@@ -1,13 +1,14 @@
 import React, { useContext, useEffect } from "react";
 import { NodeContext } from "../context/NodeContext";
 import { IoArrowBack } from "react-icons/io5";
+import type { Node } from "reactflow";
 
 const EditNode = () => {
   const { nodeSelected, setNodeSelected, setFlowHaveChanges } = useContext(NodeContext);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const updatedLabel = e.target.value;
-    setNodeSelected((prevNode) => ({
+    setNodeSelected((prevNode: Node) => ({
       ...prevNode,
       data: { ...prevNode.data, label: updatedLabel },
     }));

@@ -1,4 +1,3 @@
-import React from "react";
 import { AiOutlineMessage } from "react-icons/ai";
 import { Handle, Position } from "reactflow";
 

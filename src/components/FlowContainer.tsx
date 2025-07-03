@@ -15,7 +15,13 @@ import ReactFlow, {
   Background,
   BackgroundVariant,
 } from "reactflow";
-import type { Connection } from "reactflow";
+import type {
+  Node,
+  Edge,
+  Connection,
+  ReactFlowInstance,
+  OnConnect,
+} from 'reactflow';
 import "reactflow/dist/style.css";
 
 import { toast } from "react-toastify";
@@ -25,14 +31,6 @@ import Sidebar from "./Sidebar";
 import MessageNode from "./nodes/Message";
 import EditNode from "./EditNode";
 import { NodeContext } from "../context/NodeContext";
-
-type NodeData = {
-  label: string;
-};
-
-type CustomNode = Node<NodeData>;
-
-const initialNodes: CustomNode[] = [];
 
 const nodeTypeConfig = {
   message: MessageNode,
@@ -72,8 +70,8 @@ const ReactflowContainer: React.FC = () => {
   } = useContext(NodeContext);
 
   const reactFlowContainer = useRef<HTMLDivElement | null>(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState<CustomNode>(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [nodes, setNodes, onNodesChange] = useNodesState<Node[]>([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>([]);
   const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance | null>(null);
 
   const onNodeLabelChange = useCallback(
@@ -129,7 +127,7 @@ const ReactflowContainer: React.FC = () => {
 
       if (!position) return;
 
-      const newNode: CustomNode = {
+      const newNode: Node = {
         id: getId(type),
         type,
         position,

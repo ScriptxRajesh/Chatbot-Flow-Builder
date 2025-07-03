@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "./components/Navbar";
 import ReactFlowContainer from "./components/FlowContainer";
 import ContextProvider from "./context/NodeContext";

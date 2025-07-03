@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { NodeContext } from "../context/NodeContext";
 
 const Navbar = () => {
-  const { flowHaveChanges, toggleBtnClick, setToggleBtnClick } = useContext(NodeContext);
+  const {  toggleBtnClick, setToggleBtnClick } = useContext(NodeContext);
 
   const handleSaveBtnClick = () => {
     setToggleBtnClick(!toggleBtnClick);
